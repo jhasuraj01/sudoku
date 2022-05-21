@@ -1,0 +1,24 @@
+:root, html, body {
+  margin: 0;
+  font-family: 'Odibee Sans', system-ui;
+  background-color: var(--background);
+
+  // default theme
+  --background: #240054;
+  --grid-background: #750AFF;
+  --grid-color: #E8D6FF;
+  --grid-background-error: #E50000;
+  --grid-color-error: #FFFFFF;
+  --keyboard-background: #3A0085;
+}
+
+@media (prefers-color-scheme: light) {
+  :root, html, body {
+    --background: #EDEDED;
+    --grid-background: #FFFFFF;
+    --grid-color: #4700A3;
+    --grid-background-error: #FB8383;
+    --grid-color-error: #A30000;
+    --keyboard-background: #F5F5F5;
+  }
+}

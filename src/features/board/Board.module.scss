@@ -1,0 +1,26 @@
+.board {
+    display: inline-flex;
+    flex-direction: column;
+    gap: 8px;
+    margin: 48px - 16px;
+
+    .row {
+        display: flex;
+        gap: 8px;
+        margin: 0;
+        &:nth-child(3n + 1) {
+            margin-top: 16px;
+        }
+        &:last-child {
+            margin-bottom: 16px;
+        }
+
+        div:nth-child(3n + 1) {
+            margin-left: 16px;
+        }
+        div:last-child {
+            margin-right: 16px;
+        }
+    }
+}
+
