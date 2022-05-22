@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAppDispatch } from '../../app/hooks';
 import { update } from '../board/BoardSlice';
 import styles from './KeyBoard.module.scss';
@@ -7,6 +7,17 @@ export function KeyBoard() {
   const dispatch = useAppDispatch()
 
   const keys = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
+
+  useEffect(() => {
+    const handleNumKeyPress = (event: KeyboardEvent) => {
+      const key = Number(event.key);
+      if (0 <= key && key <= 9) {
+        dispatch(update(key));
+      }
+    }
+    window.addEventListener('keypress', handleNumKeyPress);
+    return () => window.removeEventListener('keypress', handleNumKeyPress);
+  }, [dispatch])
 
   return (
     <div className={styles.board}>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { Grid } from '../grid/Grid';
 import styles from './Board.module.scss';
@@ -21,6 +21,27 @@ export function Board() {
 
   const { data, selected } = useAppSelector(selectBoard);
   const dispatch = useAppDispatch()
+
+  useEffect(() => {
+    const handleArrowKeys = (event: KeyboardEvent) => {
+      switch (event.key) {
+        case "ArrowDown":
+          if(selected.row < 9) dispatch(select({row: selected.row + 1, col: selected.col}));
+          break;
+        case "ArrowRight":
+          if(selected.col < 9) dispatch(select({...selected, col: selected.col + 1}));
+          break;
+        case "ArrowUp":
+          if(selected.row > 0) dispatch(select({...selected, row: selected.row - 1}));
+          break;
+        case "ArrowLeft":
+          if(selected.col > 0) dispatch(select({...selected, col: selected.col - 1}));
+          break;
+      }
+    }
+    window.addEventListener('keydown', handleArrowKeys)
+    return () => window.removeEventListener('keydown', handleArrowKeys);
+  }, [selected, dispatch])
 
   return (
     <div className={styles.board}>
