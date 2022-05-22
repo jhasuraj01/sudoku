@@ -6,18 +6,6 @@ import { KeyBoard } from './features/keyboard/KeyBoard';
 import { ThemeSwitch } from './features/theme-switch/ThemeSwitch';
 import { Time } from './features/time/Time';
 
-const data = [
-  [1, 2, 3, 4, 5, 6, 7, 8, 9],
-  [1, 2, 3, 4, 5, 6, 7, 8, 9],
-  [1, 2, 3, 4, 5, 6, 7, 8, 9],
-  [1, 2, 3, 4, 5, 6, 7, 8, 9],
-  [1, 2, 3, 4, 5, 6, 7, 8, 9],
-  [1, 2, 3, 4, 5, 6, 7, 8, 9],
-  [1, 2, 3, 4, 5, 6, 7, 8, 9],
-  [1, 2, 3, 4, 5, 6, 7, 8, 9],
-  [1, 2, 3, 4, 5, 6, 7, 8, 9],
-]
-
 function App() {
   return (
     <>
@@ -25,7 +13,7 @@ function App() {
         <Time value={10000000} />
       </div>
       <div className='main'>
-        <Board data={data} />
+        <Board />
         <KeyBoard />
       </div>
       <div className="right">

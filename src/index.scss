@@ -7,8 +7,11 @@
 // default theme
 .dark {
   --background: #240054;
-  --grid-background: #750AFF;
+  --grid-background: hsl(266, 100%, 52%);
+  --grid-background-highlighted: hsl(266, 100%, 62%);
+  --grid-background-selected: hsl(267, 100%, 72%);
   --grid-color: #E8D6FF;
+  --grid-color-selected: #740aff;
   --grid-background-error: #E50000;
   --grid-color-error: #FFFFFF;
   --keyboard-background: #3A0085;
@@ -19,8 +22,11 @@
 
 .light {
   --background: #EDEDED;
-  --grid-background: #FFFFFF;
+  --grid-background: hsl(0, 0%, 100%);
+  --grid-background-highlighted: hsl(266, 100%, 90%);
+  --grid-background-selected: hsl(267, 100%, 75%);
   --grid-color: #4700A3;
+  --grid-color-selected: hsl(267, 100%, 22%);
   --grid-background-error: #FB8383;
   --grid-color-error: #A30000;
   --keyboard-background: #F5F5F5;
