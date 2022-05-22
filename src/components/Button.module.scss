@@ -1,0 +1,15 @@
+.button {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    width: 160px;
+    height: 64px;
+
+    background: var(--text-button-background);
+    color: var(--text-button-color);
+    border-radius: 8px;
+
+    font-size: 32px;
+}

@@ -4,3 +4,19 @@
     justify-content: center;
     align-items: center;
 }
+
+.left, .right {
+    display: flex;
+    flex-direction: column;
+    position: absolute;
+    top: 144px;
+}
+
+.left {
+    left: 48px;
+}
+
+.right {
+    right: 144px;
+    gap: 16px;
+}

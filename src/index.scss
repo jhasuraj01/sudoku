@@ -2,23 +2,33 @@
   margin: 0;
   font-family: 'Odibee Sans', system-ui;
   background-color: var(--background);
+}
 
-  // default theme
+// default theme
+.dark {
   --background: #240054;
   --grid-background: #750AFF;
   --grid-color: #E8D6FF;
   --grid-background-error: #E50000;
   --grid-color-error: #FFFFFF;
   --keyboard-background: #3A0085;
+  --clock-color: #9747FF;
+  --text-button-background: #9747FF;
+  --text-button-color: #F4F4F4;
 }
 
-@media (prefers-color-scheme: light) {
-  :root, html, body {
-    --background: #EDEDED;
-    --grid-background: #FFFFFF;
-    --grid-color: #4700A3;
-    --grid-background-error: #FB8383;
-    --grid-color-error: #A30000;
-    --keyboard-background: #F5F5F5;
-  }
+.light {
+  --background: #EDEDED;
+  --grid-background: #FFFFFF;
+  --grid-color: #4700A3;
+  --grid-background-error: #FB8383;
+  --grid-color-error: #A30000;
+  --keyboard-background: #F5F5F5;
+  --clock-color: #8F8F8F;
+  --text-button-background: #FFFFFF;
+  --text-button-color: #000000;
+}
+
+button {
+  font-family: 'Odibee Sans', system-ui;
 }
