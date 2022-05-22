@@ -18,5 +18,14 @@
         cursor: pointer;
         background-color: var(--grid-background);
         color: var(--grid-color);
+        transition: all 150ms ease-out;
+
+        &:hover {
+            background-color: var(--grid-background-highlighted);
+        }
+
+        &:active {
+            transform: scale3d(0.9, 0.9, 0.9);
+        }
     }
 }

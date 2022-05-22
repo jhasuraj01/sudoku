@@ -17,6 +17,6 @@ export function Grid({ onClick, value, error, selected, highlighted }: GridProps
   if(highlighted) classNames.push(styles.highlighted);
 
   return (
-      <div onClick={onClick} className={classNames.join(" ")}>{ value }</div>
+      <div onClick={onClick} className={classNames.join(" ")}>{ value ? value : "" }</div>
   );
 }

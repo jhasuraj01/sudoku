@@ -20,11 +20,11 @@
     color: var(--grid-color-error);
 }
 
-.highlighted {
+.grid:hover, .highlighted {
     background-color: var(--grid-background-highlighted);
 }
 
-.selected {
+.selected, .selected:hover {
     color: var(--grid-color-selected);
     background-color: var(--grid-background-selected);
     transform: scale3d(1.5, 1.5, 1.5);

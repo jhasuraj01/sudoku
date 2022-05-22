@@ -36,11 +36,15 @@ export const boardSlice = createSlice({
     select(state, action: PayloadAction<GridLocation>) {
       state.selected.col = action.payload.col;
       state.selected.row = action.payload.row;
+    },
+    update(state, action: PayloadAction<number>) {
+      const target = state.selected;
+      state.data[target.row][target.col] = action.payload;
     }
   },
 });
 
-export const { select } = boardSlice.actions;
+export const { select, update } = boardSlice.actions;
 
 export const selectBoard = (state: RootState) => state.board;
 
