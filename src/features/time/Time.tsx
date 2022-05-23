@@ -31,7 +31,7 @@ export function Time() {
 
   return (
     <div className={styles.clock}>
-      <div>SUKODU</div>
+      <div>SUDOKU</div>
       <div>{`${numToString(hour)}:${numToString(min)}:${numToString(sec)}`}</div>
     </div>
   );
