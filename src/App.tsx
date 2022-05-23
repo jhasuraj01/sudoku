@@ -35,7 +35,7 @@ function App() {
       <div className="right">
         <Button text="New Game" onClick={startNewGame} />
         <Button text="Restart" onClick={restartCurrentGame} />
-        <Button text="Auto Mode" />
+        {/* <Button text="Auto Mode" /> */}
       </div>
       <ThemeSwitch />
     </>
