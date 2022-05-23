@@ -19,7 +19,7 @@ const isHighlighted = (selected: GridLocation, rid: number, cid: number): boolea
 
 export function Board() {
 
-  const { data, selected } = useAppSelector(selectBoard);
+  const { board, selected } = useAppSelector(selectBoard);
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -46,18 +46,18 @@ export function Board() {
   return (
     <div className={styles.board}>
       {
-        data.map((row, rid) => {
+        board.map((row, rid) => {
           return (
             <div key={`${rid}`} className={styles.row}>
-              {row.map((value, cid) => {
+              {row.map((element, cid) => {
                 return (
                   <Grid
                     onClick={() => dispatch(select({ col: cid, row: rid }))}
                     key={`${cid}`}
                     selected={selected.row === rid && selected.col === cid}
                     highlighted={isHighlighted(selected, rid, cid)}
-                    value={value}
-                    error={false} />
+                    value={element.value}
+                    error={element.error} />
                 )
               })}
             </div>

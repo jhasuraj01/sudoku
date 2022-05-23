@@ -13,6 +13,7 @@
 
     font-size: 32px;
     transition: transform 150ms ease-in-out;
+    cursor: pointer;
 
     &:active {
         transform: scale3d(0.96, 0.96, 0.96);

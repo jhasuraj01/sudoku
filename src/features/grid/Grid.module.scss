@@ -15,11 +15,6 @@
     transition: all 200ms ease-in-out;
 }
 
-.error {
-    background-color: var(--grid-background-error);
-    color: var(--grid-color-error);
-}
-
 .grid:hover, .highlighted {
     background-color: var(--grid-background-highlighted);
 }
@@ -30,4 +25,9 @@
     transform: scale3d(1.5, 1.5, 1.5);
     box-shadow: 0 0 24px 4px hsla(266, 100%, 32%, 0.2);
     transition: all 150ms ease-out;
+}
+
+.error, .error:hover {
+    background-color: var(--grid-background-error);
+    color: var(--grid-color-error);
 }
