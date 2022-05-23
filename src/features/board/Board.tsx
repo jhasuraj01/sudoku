@@ -19,7 +19,7 @@ const isHighlighted = (selected: GridLocation, rid: number, cid: number): boolea
 
 export function Board() {
 
-  const { board, selected } = useAppSelector(selectBoard);
+  const { board, selected, solved } = useAppSelector(selectBoard);
   const dispatch = useAppDispatch()
 
   useEffect(() => {
@@ -58,6 +58,7 @@ export function Board() {
                     highlighted={isHighlighted(selected, rid, cid)}
                     prefilled={element.prefilled}
                     value={element.value}
+                    solved={solved}
                     error={element.error} />
                 )
               })}

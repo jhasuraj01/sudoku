@@ -45,3 +45,7 @@
 .prefilled.selected {
     transform: scale3d(1.2, 1.2, 1.2);
 }
+
+.solved {
+    background-color: var(--grid-background-solved);
+}

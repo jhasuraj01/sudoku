@@ -1,17 +1,19 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import './App.scss';
-import { useAppDispatch } from './app/hooks';
+import { useAppDispatch, useAppSelector } from './app/hooks';
 import { Button } from './components/Button';
 import { Board } from './features/board/Board';
 import { KeyBoard } from './features/keyboard/KeyBoard';
 import { ThemeSwitch } from './features/theme-switch/ThemeSwitch';
 import { Time } from './features/time/Time';
-import { restartTime } from './features/time/TimeSlice';
-import { restartGame, newGame } from './features/board/BoardSlice';
+import { restartTime, stopTime } from './features/time/TimeSlice';
+import { restartGame, newGame, selectBoard } from './features/board/BoardSlice';
 
 function App() {
 
   const dispatch = useAppDispatch();
+
+  const { solved } = useAppSelector(selectBoard);
 
   const startNewGame = () => {
     dispatch(restartTime());
@@ -22,6 +24,12 @@ function App() {
     dispatch(restartTime());
     dispatch(restartGame());
   }
+
+  useEffect(() => {
+    if(solved) {
+      dispatch(stopTime());
+    }
+  }, [dispatch, solved])
 
   return (
     <>

@@ -32,6 +32,16 @@ export const isInvalidInput = (sudoku: number[][], row: number, col: number, tar
   return false;
 }
 
+export const isSolved = (sudoku: number[][]): boolean => {
+  for(let row = 0; row < 9; ++row) {
+    for(let col = 0; col < 9; ++col) {
+      if(isInvalidInput(sudoku, row, col, sudoku[row][col]))
+        return false;
+    }
+  }
+  return true;
+}
+
 function getRandomIntInclusive(min: number, max: number): number {
   min = Math.ceil(min);
   max = Math.floor(max);
@@ -78,7 +88,7 @@ export class Sudoku {
     ]
 
     this.build(0, 0);
-    this.init(40);
+    this.init(80);
   }
 
   private build(row: number, col: number): boolean {

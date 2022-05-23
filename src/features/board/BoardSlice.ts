@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
-import { Sudoku } from '../../libs/sudoku';
+import { Sudoku, isSolved } from '../../libs/sudoku';
 import sudokuToBoard, { BoardElement } from '../../libs/sudokuToBoard';
 
 export type GridLocation = {
@@ -13,6 +13,7 @@ export interface BoardState {
   board: BoardElement[][];
   initial: number[][];
   final: number[][];
+  solved: boolean;
   selected: GridLocation;
 }
 
@@ -23,6 +24,7 @@ const initialState: BoardState = {
   board: sudokuToBoard(sudoku.initial, sudoku.initial),
   initial: sudoku.initial,
   final: sudoku.final,
+  solved: false,
   selected: {
     row: 0,
     col: 0,
@@ -40,16 +42,25 @@ export const boardSlice = createSlice({
     update(state, action: PayloadAction<number>) {
       const target = state.selected;
 
+      // don't update once solved
+      if(state.solved) return;
+
       // don't update prefilled blocks
       if(state.board[target.row][target.col].prefilled) 
         return;
 
       state.data[target.row][target.col] = action.payload;
       state.board = sudokuToBoard(state.data, state.initial);
+  
+      if(isSolved(state.data)) {
+        state.solved = true;
+      }
+
     },
     restartGame (state) {
       state.data = state.initial;
       state.board = sudokuToBoard(state.data, state.initial);
+      state.solved = false;
     },
     newGame(state) {
       const sudoku = new Sudoku();
@@ -57,6 +68,7 @@ export const boardSlice = createSlice({
       state.initial = sudoku.initial;
       state.final = sudoku.final;
       state.board = sudokuToBoard(state.data, state.initial);
+      state.solved = false;
     }
   },
 });
