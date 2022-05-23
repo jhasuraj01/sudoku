@@ -32,11 +32,16 @@
     color: var(--grid-color);
 }
 
-.prefilled.selected {
-    transform: scale3d(1.2, 1.2, 1.2);
-}
 
 .error, .error:hover {
     background-color: var(--grid-background-error);
     color: var(--grid-color-error);
+}
+
+.prefilled.error {
+    transform: scale3d(0.8, 0.8, 0.8);
+}
+
+.prefilled.selected {
+    transform: scale3d(1.2, 1.2, 1.2);
 }
