@@ -46,6 +46,9 @@
     transform: scale3d(1.2, 1.2, 1.2);
 }
 
-.solved {
+.solved, .solved:hover {
     background-color: var(--grid-background-solved);
+    transform: none;
+    color: var(--grid-color);
+    box-shadow: none;
 }
