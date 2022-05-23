@@ -35,6 +35,8 @@ export const isInvalidInput = (sudoku: number[][], row: number, col: number, tar
 export const isSolved = (sudoku: number[][]): boolean => {
   for(let row = 0; row < 9; ++row) {
     for(let col = 0; col < 9; ++col) {
+      if(sudoku[row][col] === 0)
+        return false;
       if(isInvalidInput(sudoku, row, col, sudoku[row][col]))
         return false;
     }
