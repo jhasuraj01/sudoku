@@ -26,10 +26,10 @@ export function Board() {
     const handleArrowKeys = (event: KeyboardEvent) => {
       switch (event.key) {
         case "ArrowDown":
-          if(selected.row < 9) dispatch(select({row: selected.row + 1, col: selected.col}));
+          if(selected.row < 8) dispatch(select({row: selected.row + 1, col: selected.col}));
           break;
         case "ArrowRight":
-          if(selected.col < 9) dispatch(select({...selected, col: selected.col + 1}));
+          if(selected.col < 8) dispatch(select({...selected, col: selected.col + 1}));
           break;
         case "ArrowUp":
           if(selected.row > 0) dispatch(select({...selected, row: selected.row - 1}));
