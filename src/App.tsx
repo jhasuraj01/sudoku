@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <div className='left'>
-        <Time value={10000000} />
+        <Time />
       </div>
       <div className='main'>
         <Board />

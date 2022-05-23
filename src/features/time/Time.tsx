@@ -1,16 +1,27 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import styles from './Time.module.scss';
-
-interface TimeProps {
-  value: number;
-}
+import { selectTime } from './TimeSlice';
 
 const numToString = (num: number, size: number = 2): string => {
   const result = "00" + String(num);
   return result.substring(result.length - size);
 }
 
-export function Time({ value }: TimeProps) {
+export function Time() {
+
+  const { start, end } = useAppSelector(selectTime);
+  // const dispatch = useAppDispatch();
+
+  let [value, setValue] = useState((end || new Date()).getTime() - start.getTime());
+
+  useEffect(() => {
+    const updateTimeValue = () => {
+      setValue((end || new Date()).getTime() - start.getTime());
+    }
+    const interval = setInterval(updateTimeValue, 1000);
+    return () => clearInterval(interval);
+  }, [])
 
   const hour: number = Math.floor(value / 3600000);
   value -= hour * 3600000;

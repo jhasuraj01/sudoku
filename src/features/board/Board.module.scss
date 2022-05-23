@@ -3,6 +3,7 @@
     flex-direction: column;
     gap: 8px;
     margin: 48px - 16px;
+    user-select: none;
 
     .row {
         display: flex;
