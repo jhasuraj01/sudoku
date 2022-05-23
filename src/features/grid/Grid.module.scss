@@ -27,12 +27,16 @@
     transition: all 150ms ease-out;
 }
 
-.error, .error:hover {
-    background-color: var(--grid-background-error);
-    color: var(--grid-color-error);
-}
-
 .prefilled, .prefilled:hover {
     background-color: var(--grid-background-prefilled);
     color: var(--grid-color);
+}
+
+.prefilled.selected {
+    transform: scale3d(1.2, 1.2, 1.2);
+}
+
+.error, .error:hover {
+    background-color: var(--grid-background-error);
+    color: var(--grid-color-error);
 }
