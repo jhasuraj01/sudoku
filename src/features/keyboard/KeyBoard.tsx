@@ -10,13 +10,19 @@ export function KeyBoard() {
 
   useEffect(() => {
     const handleNumKeyPress = (event: KeyboardEvent) => {
+
+      if(event.key === 'Backspace' || event.key === 'Delete') {
+        dispatch(update(0));
+        return;
+      }
+
       const key = Number(event.key);
       if (0 <= key && key <= 9) {
         dispatch(update(key));
       }
     }
-    window.addEventListener('keypress', handleNumKeyPress);
-    return () => window.removeEventListener('keypress', handleNumKeyPress);
+    window.addEventListener('keydown', handleNumKeyPress);
+    return () => window.removeEventListener('keydown', handleNumKeyPress);
   }, [dispatch])
 
   return (
