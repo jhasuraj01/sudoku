@@ -1,30 +1,133 @@
-export class Sudoku {
-    public initial: number[][];
-    public final: number[][];
+import { compare, PriorityQueue } from "@anorcle/dsa";
 
-    constructor() {
-        this.initial = [
-            [3, 0, 6, 5, 0, 8, 4, 0, 0], 
-            [5, 2, 0, 0, 0, 0, 0, 0, 0], 
-            [0, 8, 7, 0, 0, 0, 0, 3, 1], 
-            [0, 0, 3, 0, 1, 0, 0, 8, 0], 
-            [9, 0, 0, 8, 6, 3, 0, 0, 5], 
-            [0, 5, 0, 0, 9, 0, 6, 0, 0], 
-            [1, 3, 0, 0, 0, 0, 2, 5, 0], 
-            [0, 0, 0, 0, 0, 0, 0, 7, 4], 
-            [0, 0, 5, 2, 0, 6, 3, 0, 0]
-        ]
+export const isInvalidInput = (sudoku: number[][], row: number, col: number, target: number): boolean => {
 
-        this.final = [
-            [3, 1, 6, 5, 7, 8, 4, 9, 2],
-            [5, 2, 9, 1, 3, 4, 7, 6, 8],
-            [4, 8, 7, 6, 2, 9, 5, 3, 1],
-            [2, 6, 3, 4, 1, 5, 9, 8, 7],
-            [9, 7, 4, 8, 6, 3, 1, 2, 5],
-            [8, 5, 1, 7, 9, 2, 6, 4, 3],
-            [1, 3, 8, 9, 4, 7, 2, 5, 6],
-            [6, 9, 2, 3, 5, 1, 8, 7, 4],
-            [7, 4, 5, 2, 8, 6, 3, 1, 9],
-        ]
+  if (target === 0) return false;
+
+  for (let j = 0; j < 9; ++j) {
+    if (j !== col && sudoku[row][j] === target) {
+      return true;
     }
+  }
+
+  // col wise unique
+  for (let j = 0; j < 9; ++j) {
+    if (j !== row && sudoku[j][col] === target) {
+      return true;
+    }
+  }
+
+  // block wise
+  const r = Math.floor(row / 3) * 3;
+  const c = Math.floor(col / 3) * 3;
+
+  for (let i = 0; i < 3; ++i) {
+    for (let j = 0; j < 3; ++j) {
+      if (!(r + i === row || c + j === col) && sudoku[r + i][c + j] === target) {
+        return true;
+      }
+    }
+  }
+
+  return false;
+}
+
+function getRandomIntInclusive(min: number, max: number): number {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
+}
+
+type SudokuGridEntry = {
+  order: number;
+  value: number;
+}
+
+const compareSudokuGridEntry: compare<SudokuGridEntry> = (a, b) => {
+  if(a.order > b.order) return +1; 
+  if(a.order < b.order) return -1;
+  return 0;
+}
+
+export class Sudoku {
+  public initial: number[][];
+  public final: number[][];
+
+  constructor() {
+    this.initial = [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ]
+    this.final = [
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0, 0],
+    ]
+
+    this.build(0, 0);
+    this.init(40);
+  }
+
+  private build(row: number, col: number): boolean {
+    const next = 9 * row + col + 1;
+
+    if (next > 81) {
+      return true;
+    }
+
+    if (this.final[row][col] > 0) {
+      return this.build(Math.floor(next / 9), next % 9);
+    }
+
+    const pq = new PriorityQueue<SudokuGridEntry>(compareSudokuGridEntry)
+    for(let i = 1; i <= 9; ++i) {
+      pq.push({
+        value: i,
+        order: getRandomIntInclusive(0, 100000000)
+      })
+    }
+
+    while (pq.size) {
+      const num = pq.pop().value;
+      if (isInvalidInput(this.final, row, col, num)) continue;
+      this.final[row][col] = num;
+      if (this.build(Math.floor(next / 9), next % 9)) {
+        return true;
+      }
+    }
+
+    this.final[row][col] = 0;
+    return false;
+  }
+
+  private init(size: number) {
+    const pq = new PriorityQueue<SudokuGridEntry>(compareSudokuGridEntry)
+
+    for(let i = 0; i < 81; ++i) {
+      pq.push({
+        value: i,
+        order: getRandomIntInclusive(0, 100000000)
+      })
+    }
+  
+    while (size--) {
+      const position = pq.pop().value;
+      const row = Math.floor(position / 9);
+      const col = Math.floor(position % 9);
+      this.initial[row][col] = this.final[row][col];
+    }
+  }
 }

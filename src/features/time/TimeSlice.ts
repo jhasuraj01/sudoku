@@ -2,12 +2,12 @@ import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 
 export interface TimeState {
-  start: Date;
-  end: Date | null;
+  start: number;
+  end: number | null;
 }
 
 const initialState: TimeState = {
-  start: new Date(),
+  start: Date.now(),
   end: null
 }
 
@@ -16,11 +16,11 @@ export const timeSlice = createSlice({
   initialState,
   reducers: {
     restartTime(state) {
-      state.start = new Date();
+      state.start = Date.now();
       state.end = null
     },
     stopTime(state) {
-        state.end = new Date();
+        state.end = Date.now();
     },
   },
 });

@@ -11,14 +11,13 @@ const numToString = (num: number, size: number = 2): string => {
 export function Time() {
 
   const { start, end } = useAppSelector(selectTime);
-  // const dispatch = useAppDispatch();
 
-  let [value, setValue] = useState((end || new Date()).getTime() - start.getTime());
+  let [value, setValue] = useState((end || Date.now()) - start);
 
   useEffect(() => {
-    setValue((end || new Date()).getTime() - start.getTime());
+    setValue((end || Date.now()) - start);
     const updateTimeValue = () => {
-      setValue((end || new Date()).getTime() - start.getTime());
+      setValue((end || Date.now()) - start);
     }
     const interval = setInterval(updateTimeValue, 1000);
     return () => clearInterval(interval);
