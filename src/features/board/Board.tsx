@@ -56,6 +56,7 @@ export function Board() {
                     key={`${cid}`}
                     selected={selected.row === rid && selected.col === cid}
                     highlighted={isHighlighted(selected, rid, cid)}
+                    prefilled={element.prefilled}
                     value={element.value}
                     error={element.error} />
                 )

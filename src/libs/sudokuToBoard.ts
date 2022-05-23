@@ -1,10 +1,11 @@
 import { isInvalidInput } from './sudoku'
 export interface BoardElement {
-    value: number,
-    error: boolean
+    value: number;
+    error: boolean;
+    prefilled: boolean;
 }
 
-const sudokuToBoards = (sudoku: number[][]): BoardElement[][] => {
+const sudokuToBoards = (sudoku: number[][], initial: number[][]): BoardElement[][] => {
     const board: BoardElement[][] = [];
 
     for(let row = 0; row < 9; ++row) {
@@ -13,6 +14,7 @@ const sudokuToBoards = (sudoku: number[][]): BoardElement[][] => {
             board[row].push({
                 value: sudoku[row][col],
                 error: isInvalidInput(sudoku, row, col, sudoku[row][col]),
+                prefilled: initial[row][col] > 0,
             })
         }
     }

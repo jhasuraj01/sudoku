@@ -20,7 +20,7 @@ const sudoku = new Sudoku();
 
 const initialState: BoardState = {
   data: sudoku.initial,
-  board: sudokuToBoard(sudoku.initial),
+  board: sudokuToBoard(sudoku.initial, sudoku.initial),
   initial: sudoku.initial,
   final: sudoku.final,
   selected: {
@@ -39,19 +39,24 @@ export const boardSlice = createSlice({
     },
     update(state, action: PayloadAction<number>) {
       const target = state.selected;
+
+      // don't update prefilled blocks
+      if(state.board[target.row][target.col].prefilled) 
+        return;
+
       state.data[target.row][target.col] = action.payload;
-      state.board = sudokuToBoard(state.data);
+      state.board = sudokuToBoard(state.data, state.initial);
     },
     restartGame (state) {
       state.data = state.initial;
-      state.board = sudokuToBoard(state.data);
+      state.board = sudokuToBoard(state.data, state.initial);
     },
     newGame(state) {
       const sudoku = new Sudoku();
       state.data = sudoku.initial;
       state.initial = sudoku.initial;
       state.final = sudoku.final;
-      state.board = sudokuToBoard(state.data);
+      state.board = sudokuToBoard(state.data, state.initial);
     }
   },
 });

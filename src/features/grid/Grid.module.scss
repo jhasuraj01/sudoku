@@ -31,3 +31,8 @@
     background-color: var(--grid-background-error);
     color: var(--grid-color-error);
 }
+
+.prefilled, .prefilled:hover {
+    background-color: var(--grid-background-prefilled);
+    color: var(--grid-color);
+}
