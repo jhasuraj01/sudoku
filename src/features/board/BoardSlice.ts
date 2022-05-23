@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
+import { Sudoku } from '../../libs/sudoku';
 
 export type GridLocation = {
   row: number;
@@ -8,21 +9,17 @@ export type GridLocation = {
 
 export interface BoardState {
   data: number[][];
+  initial: number[][];
+  final: number[][];
   selected: GridLocation;
 }
 
+const sudoku = new Sudoku();
+
 const initialState: BoardState = {
-  data: [
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-    [0, 0, 0, 0, 0, 0, 0, 0, 0],
-  ],
+  data: sudoku.initial,
+  initial: sudoku.initial,
+  final: sudoku.final,
   selected: {
     row: 0,
     col: 0,
@@ -40,11 +37,20 @@ export const boardSlice = createSlice({
     update(state, action: PayloadAction<number>) {
       const target = state.selected;
       state.data[target.row][target.col] = action.payload;
+    },
+    restartGame (state) {
+      state.data = state.initial;
+    },
+    newGame(state) {
+      const sudoku = new Sudoku();
+      state.data = sudoku.initial;
+      state.initial = sudoku.initial;
+      state.final = sudoku.final;
     }
   },
 });
 
-export const { select, update } = boardSlice.actions;
+export const { select, update, restartGame, newGame } = boardSlice.actions;
 
 export const selectBoard = (state: RootState) => state.board;
 

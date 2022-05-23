@@ -12,4 +12,13 @@
     border-radius: 8px;
 
     font-size: 32px;
+    transition: transform 150ms ease-in-out;
+
+    &:active {
+        transform: scale3d(0.96, 0.96, 0.96);
+    }
+
+    &:focus {
+        outline: none;
+    }
 }

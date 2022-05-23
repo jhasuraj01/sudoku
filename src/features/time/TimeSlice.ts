@@ -15,17 +15,17 @@ export const timeSlice = createSlice({
   name: 'Time',
   initialState,
   reducers: {
-    restart(state) {
+    restartTime(state) {
       state.start = new Date();
       state.end = null
     },
-    stop(state) {
+    stopTime(state) {
         state.end = new Date();
     },
   },
 });
 
-export const { restart, stop } = timeSlice.actions;
+export const { restartTime, stopTime } = timeSlice.actions;
 
 export const selectTime = (state: RootState) => state.time;
 

@@ -16,6 +16,7 @@ export function Time() {
   let [value, setValue] = useState((end || new Date()).getTime() - start.getTime());
 
   useEffect(() => {
+    setValue((end || new Date()).getTime() - start.getTime());
     const updateTimeValue = () => {
       setValue((end || new Date()).getTime() - start.getTime());
     }
