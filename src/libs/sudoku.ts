@@ -88,7 +88,7 @@ export class Sudoku {
     ]
 
     this.build(0, 0);
-    this.init(80);
+    this.init(40);
   }
 
   private build(row: number, col: number): boolean {
