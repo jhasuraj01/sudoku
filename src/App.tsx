@@ -8,11 +8,13 @@ import { ThemeSwitch } from './features/theme-switch/ThemeSwitch';
 import { Time } from './features/time/Time';
 import { restartTime, stopTime } from './features/time/TimeSlice';
 import { restartGame, newGame, selectBoard } from './features/board/BoardSlice';
+import { useWindowSize } from 'react-use';
+import Confetti from 'react-confetti'
 
 function App() {
 
   const dispatch = useAppDispatch();
-
+  const { width, height } = useWindowSize();
   const { solved } = useAppSelector(selectBoard);
 
   const startNewGame = () => {
@@ -46,6 +48,8 @@ function App() {
         {/* <Button text="Auto Mode" /> */}
       </div>
       <ThemeSwitch />
+      {solved ? <Confetti className='confetti' width={width} height={height} /> : <></>}
+      
     </>
   );
 }
