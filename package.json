@@ -1,6 +1,6 @@
 {
   "name": "sudoku",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "homepage": "https://jhasuraj.com/sudoku/",
   "dependencies": {
@@ -21,8 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "deploy": "npx gh-pages -d build",
-    "eject": "react-scripts eject"
+    "deploy": "npx gh-pages -d build"
   },
   "eslintConfig": {
     "extends": [
