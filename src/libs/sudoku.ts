@@ -1,4 +1,5 @@
 import { compare, PriorityQueue } from "@anorcle/dsa";
+import { getRandomIntInclusive } from "./utils";
 
 export const isInvalidInput = (sudoku: number[][], row: number, col: number, target: number): boolean => {
 
@@ -44,12 +45,6 @@ export const isSolved = (sudoku: number[][]): boolean => {
   return true;
 }
 
-function getRandomIntInclusive(min: number, max: number): number {
-  min = Math.ceil(min);
-  max = Math.floor(max);
-  return Math.floor(Math.random() * (max - min + 1) + min); //The maximum is inclusive and the minimum is inclusive
-}
-
 type SudokuGridEntry = {
   order: number;
   value: number;
@@ -66,6 +61,7 @@ export class Sudoku {
   public final: number[][];
 
   constructor() {
+
     this.initial = [
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -77,6 +73,7 @@ export class Sudoku {
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
     ]
+
     this.final = [
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
       [0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -134,7 +131,7 @@ export class Sudoku {
         order: getRandomIntInclusive(0, 100000000)
       })
     }
-  
+
     while (size--) {
       const position = pq.pop().value;
       const row = Math.floor(position / 9);

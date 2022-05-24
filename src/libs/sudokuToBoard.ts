@@ -1,4 +1,5 @@
 import { isInvalidInput } from './sudoku'
+
 export interface BoardElement {
     value: number;
     error: boolean;
