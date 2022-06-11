@@ -1,12 +1,16 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../app/store';
 
+const url = new URL(window.location.href);
+
+const theme = url.searchParams.get('theme')
+
 export interface ThemeState {
   mode: 'light' | 'dark';
 }
 
 const initialState: ThemeState = {
-  mode: 'dark',
+  mode: theme === 'light' ? 'light' : 'dark',
 };
 
 export const themeSwitchSlice = createSlice({
