@@ -35,14 +35,14 @@ function App() {
 
   return (
     <>
-      <div className='left'>
+      <div className='time'>
         <Time />
       </div>
       <div className='main'>
         <Board />
         <KeyBoard />
       </div>
-      <div className="right">
+      <div className="action-buttons">
         <Button text="New Game" onClick={startNewGame} />
         <Button text="Restart" onClick={restartCurrentGame} />
         {/* <Button text="Auto Mode" /> */}

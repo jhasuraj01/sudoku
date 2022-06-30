@@ -1,4 +1,8 @@
 .clock {
     font-size: 96px;
+    @media (max-width: 1050px) {
+        font-size: 8vw;
+    }
+
     color: var(--clock-color);
 }

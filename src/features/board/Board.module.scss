@@ -1,26 +1,31 @@
 .board {
     display: inline-flex;
     flex-direction: column;
-    gap: 8px;
-    margin: 48px - 16px;
+    gap: var(--grid-small-gap);
+
+    margin: var(--grid-large-gap);
+    margin-top: 48px;
+    @media (max-width: 850px) {
+        margin-top: 140px;
+    }
+
     user-select: none;
 
     .row {
         display: flex;
-        gap: 8px;
+        gap: var(--grid-small-gap);
         margin: 0;
         &:nth-child(3n + 1) {
-            margin-top: 16px;
+            margin-top: var(--grid-large-gap);
         }
         &:last-child {
-            margin-bottom: 16px;
+            margin-bottom: var(--grid-large-gap);
         }
-
         div:nth-child(3n + 1) {
-            margin-left: 16px;
+            margin-left: var(--grid-large-gap);
         }
         div:last-child {
-            margin-right: 16px;
+            margin-right: var(--grid-large-gap);
         }
     }
 }

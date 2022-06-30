@@ -1,3 +1,16 @@
+body {
+    --unit: 1vw;
+    @media (max-width: 850px) {
+        --unit: min(1vw, 4.2px);
+    }
+
+    --grid-small-gap: min(8px, 1*var(--unit));
+    --grid-large-gap: min(16px, 2*var(--unit));
+    --grid-side: min(48px, 9*var(--unit));
+    --grid-font-size: min(24px, 5*var(--unit));
+
+}
+
 .main {
     display: flex;
     flex-direction: column;
@@ -5,20 +18,82 @@
     align-items: center;
 }
 
-.left, .right {
+.time, .action-buttons {
     display: flex;
     flex-direction: column;
     position: absolute;
     top: 144px;
 }
 
-.left {
+.action-buttons {
+    right: 48px;
+    gap: 16px;
+}
+
+.time {
     left: 48px;
 }
 
-.right {
-    right: 48px;
-    gap: 16px;
+@media (max-width: 1300px) {
+    .action-buttons {
+        left: 48px;
+        top: 400px;
+    }
+    .main {
+        margin-left: 350px;
+    }
+}
+
+@media (max-width: 1050px) {
+    .time {
+        left: 16px;
+    }
+    .action-buttons {
+        left: 16px;
+        top: 400px;
+    }
+    .main {
+        margin-left: 250px;
+    }
+}
+
+@media (max-width: 950px) {
+    .main {
+        margin-left: 170px;
+    }
+}
+
+@media (max-width: 850px) {
+    .time {
+        top: 8px;
+    }
+    .action-buttons {
+        top: 14px;
+        left: auto;
+        right: 72px;
+        flex-direction: row;
+    }
+    .main {
+        margin: 0;
+        margin-bottom: 140px;
+    }
+}
+
+@media (max-width: 500px) {
+    .time {
+        top: 8px;
+    }
+    .action-buttons {
+        top: 100px;
+        left: auto;
+        right: auto;
+        margin: 0;
+        width: 100vw;
+        justify-content: center;
+    }
+    .main {
+        margin-top: 50px;
+    }
 }
 
 .confetti {
